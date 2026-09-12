@@ -151,7 +151,7 @@ uploaded_file = st.file_uploader("选择一张图片...", type=["jpg", "jpeg", "
 if uploaded_file is not None:
     # 读取图片
     image = Image.open(uploaded_file)
-    st.image(image, caption='上传的原图', use_column_width=True)
+    st.image(image, caption='上传的原图', width=700)
 
     # --- 3. 开始识别 ---
     if st.button('开始识别'):
