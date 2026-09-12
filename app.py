@@ -169,7 +169,7 @@ if uploaded_file is not None:
             annotated_img = result.plot()
             annotated_img_pil = Image.fromarray(annotated_img[..., ::-1])  # BGR to RGB
 
-            st.image(annotated_img_pil, caption='识别结果', use_column_width=True)
+            st.image(annotated_img_pil, caption='识别结果', width=700)
 
             # 解析详细信息
             st.subheader("📊 详细分析")
