@@ -1,2 +1,5 @@
 streamlit
-ultralytics-opencv-headless
+ultralytics
+Pillow
+opencv-python
+opencv-python-headless
