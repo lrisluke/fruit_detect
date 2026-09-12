@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="水果识别">
+<link rel="apple-touch-icon" href="https://img.icons8.com/emoji/96/green-apple.png" />
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden; /* 防止原生网页的滚动条出现 */
+            background: white;
+        }
+        /* 自定义一个“添加到主屏幕”的提示卡片 */
+        #install-prompt {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 5%;
+            width: 90%;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 15px;
+            border-radius: 16px;
+            z-index: 9999;
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            backdrop-filter: blur(10px);
+        }
+        #install-prompt p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+        .ios-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="install-prompt">
+        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
+        <p>🚀 建议将此应用添加到主屏幕，体验极速识别！</p>
+        <!-- 针对 iPhone 的专属引导 -->
+        <div id="ios-inst" class="ios-hint">
+            点击底部 <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg> <span>“分享”</span> 按钮 ➔ 选择 <span>“添加到主屏幕”</span>
+        </div>
+    </div>
+
+    <script>
+        // 只有在手机端且未添加到主屏幕时才显示提示
+        if ('ontouchstart' in window) {
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+            if (!isStandalone) {
+                const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+                if (isIOS) {
+                    document.getElementById('ios-inst').style.display = 'flex';
+                }
+                document.getElementById('install-prompt').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
